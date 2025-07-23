@@ -26,10 +26,29 @@
                 Errors = errors
             };
         }
+
+
     }
 
     public class ApiResponse : ApiResponse<object>
     {
-        
+        public static ApiResponse Success(string? message = null)
+        {
+            return new ApiResponse
+            {
+                //Success = true,
+                Message = message
+            };
+        }
+
+        public static ApiResponse Error(string message, List<string>? errors = null)
+        {
+            return new ApiResponse
+            {
+                //Success = false,
+                Message = message,
+                Errors = errors
+            };
+        }
     }
 }
