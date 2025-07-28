@@ -8,16 +8,10 @@ using BC = BCrypt.Net.BCrypt;
 namespace API.Services
 
 {
-    public class UserService
+    public class UserService(PaymentGatewayDbContext context, ITenantService tenantService) : IUserService
     {
-        private readonly PaymentGatewayDbContext _context;
-        private readonly ITenantService _tenantService;
-
-        public UserService(PaymentGatewayDbContext context, ITenantService tenantService)
-        {
-            _context = context;
-            _tenantService = tenantService;
-        }
+        private readonly PaymentGatewayDbContext _context = context;
+        private readonly ITenantService _tenantService = tenantService;
 
         public async Task<User> CreateUserAsync(CreateUserRequest request)
         {
